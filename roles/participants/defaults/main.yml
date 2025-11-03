@@ -3,21 +3,21 @@
 # -------------------------------------------------
 
 # Lab user
-rh1_lab30_ctf_participants_ar_username: lab-user
-rh1_lab30_ctf_participants_ar_group: lab-user
+rhpds_ctf_participants_ar_username: lab-user
+rhpds_ctf_participants_ar_group: lab-user
 # Set this variable to set password for the user
-#rh1_lab30_ctf_participants_ar_user_password: CHANGEME
+#rhpds_ctf_participants_ar_user_password: CHANGEME
 
 # there are two options participant/server
-rh1_lab30_ctf_participants_ar_task_type: participant
+rhpds_ctf_participants_ar_task_type: participant
 
 # List of hosts to delegate
-rh1_lab30_ctf_participants_ar_participant_hosts:
+rhpds_ctf_participants_ar_participant_hosts:
   - server1
   - server2
   
 # SSh private key content
-rh1_lab30_ctf_participants_ar_ssh_private_key: |
+rhpds_ctf_participants_ar_ssh_private_key: |
   -----BEGIN OPENSSH PRIVATE KEY-----
   b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
   NhAAAAAwEAAQAAAYEAjMbd6nZOzB5e742dTEiLXPfgwsZb/lQvxnurzhFYGPu9lyknqero
@@ -58,7 +58,7 @@ rh1_lab30_ctf_participants_ar_ssh_private_key: |
   -----END OPENSSH PRIVATE KEY-----
 
 # SSh public key content
-rh1_lab30_ctf_participants_ar_ssh_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCMxt3qdk7MHl7vjZ1MSItc9+DCxlv+VC/Ge6vOEVgY+72XKSep6ujBgU645WaZ8YLB7so1cgqhX4BsQ6nzsMo2o4gUJcGAwIrVLVTKp3nxsUp/NgQ7QhF844Wq6RosgKfjNydUzeqjmreDKzogfFG6pu0/0MzCYrfoEGFJrUrIqMY/VcZnmakRX4YVNjM0JlZov5R9+MrTFX4vbZB9F1WCD9IFz2ltqvKhEvYtxDvSkZgvYyXs1l74xXPUW53fUYRPNlgcMKoQXl4tnkiaMnGxgegThPODFl8V1EIS7sbsWGfP3ihjZWtzBDjcwoijHHdEINVh2OWCcS8eB54Xh4JigLR+VsVDOIgnmCgdlOtn8326MMOIg5r1vkuCOi1KHRKyk+LC+d9ci16rx0p9HXgEwJO3bVzbq8UnypQwPjJUvdR0CaLZ0kJiDxOhHaLUfTiSa5smRh9oORhew514BbgcMdsWEXSIka9dhhGXj8mYEPAbA07cAaX429TJHcOLejE= lab-user@bastion.dhz88.internal
+rhpds_ctf_participants_ar_ssh_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCMxt3qdk7MHl7vjZ1MSItc9+DCxlv+VC/Ge6vOEVgY+72XKSep6ujBgU645WaZ8YLB7so1cgqhX4BsQ6nzsMo2o4gUJcGAwIrVLVTKp3nxsUp/NgQ7QhF844Wq6RosgKfjNydUzeqjmreDKzogfFG6pu0/0MzCYrfoEGFJrUrIqMY/VcZnmakRX4YVNjM0JlZov5R9+MrTFX4vbZB9F1WCD9IFz2ltqvKhEvYtxDvSkZgvYyXs1l74xXPUW53fUYRPNlgcMKoQXl4tnkiaMnGxgegThPODFl8V1EIS7sbsWGfP3ihjZWtzBDjcwoijHHdEINVh2OWCcS8eB54Xh4JigLR+VsVDOIgnmCgdlOtn8326MMOIg5r1vkuCOi1KHRKyk+LC+d9ci16rx0p9HXgEwJO3bVzbq8UnypQwPjJUvdR0CaLZ0kJiDxOhHaLUfTiSa5smRh9oORhew514BbgcMdsWEXSIka9dhhGXj8mYEPAbA07cAaX429TJHcOLejE= lab-user@bastion.dhz88.internal
 
 # defaults file for add_infra_accounts
 
