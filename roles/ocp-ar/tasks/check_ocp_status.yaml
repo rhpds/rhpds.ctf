@@ -1,0 +1,56 @@
+---
+  - name: Read kubeconfig
+    set_fact:
+      kubeconfig: "{{ lookup('file', '.kube/config') | from_yaml }}"
+
+  - name: Extract server URL
+    set_fact:
+      server_url: "{{ kubeconfig.clusters[0].cluster.server }}"
+
+  - name: Extract cluster domain from variable
+    set_fact:
+          cluster_domain: "{{ server_url | urlsplit('hostname') | regex_replace('^api\\.', '') }}"
+
+  - name: Check that API has come online
+    uri:
+      url: "{{ server_url }}/version?timeout=10s"
+      method: GET
+      return_content: yes
+      status_code: 200
+      validate_certs: false
+    register: api_status
+    retries: 10
+    delay: 60
+    until: "api_status.json.major == '1'"
+
+  - name: Check OpenShift Router
+    uri:
+      url: "https://console-openshift-console.apps.{{ cluster_domain }}"
+      method: GET
+      status_code: 200
+      validate_certs: false
+    register: router_status
+    retries: 10
+    delay: 60
+    until: "router_status.status == 200"
+
+  - name: Check kube-apiserver Cluster Operator Status
+    shell: oc get co kube-apiserver -o json
+    register: api_co_status
+    retries: 10
+    delay: 60
+    until: "api_co_status.rc == 0"
+
+  - name: Check ingress Cluster Operator Status
+    shell: oc get co ingress -o json
+    register: ingress_co_status
+    retries: 10
+    delay: 60
+    until: "ingress_co_status.rc == 0"
+
+  - name: Check MCP Status
+    shell: oc get mcp -o json
+    register: mcp_status
+    retries: 10
+    delay: 60
+    until: "mcp_status.rc == 0"

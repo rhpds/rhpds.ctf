@@ -1,0 +1,82 @@
+---
+- name: Become block
+  become: true
+  block:
+    - ansible.builtin.user:
+        name: "{{ rh1_lab30_ctf_participants_ar_username }}"
+        group: "{{ rh1_lab30_ctf_participants_ar_group }}"
+        password: "{{ rh1_lab30_ctf_participants_ar_user_password | password_hash('sha512') | default(omit) }}"
+      delegate_to: "{{ _hostname_ }}"
+
+    - when: rh1_lab30_ctf_participants_ar_user_password is defined
+      block:
+        - name: Enable password ssh authentication
+          ansible.builtin.lineinfile:
+            line: PasswordAuthentication yes
+            regexp: '^ *PasswordAuthentication'
+            path: /etc/ssh/sshd_config
+          delegate_to: "{{ _hostname_ }}"
+
+        - name: Restart sshd to read conf changes
+          ansible.builtin.service:
+            name: sshd
+            state: restarted
+          delegate_to: "{{ _hostname_ }}"
+
+    - name: Enable sudo access for the user
+      ansible.builtin.lineinfile:
+        dest: /etc/sudoers.d/90-{{ rh1_lab30_ctf_participants_ar_username }}
+        state: present
+        create: true
+        line: '{{ rh1_lab30_ctf_participants_ar_username }} ALL=(ALL) NOPASSWD: ALL'
+      delegate_to: "{{ _hostname_ }}"
+
+    - name: Create .ssh directory
+      ansible.builtin.file: 
+        path: /home/{{ rh1_lab30_ctf_participants_ar_username }}/.ssh/
+        state: directory
+        owner: "{{ rh1_lab30_ctf_participants_ar_username }}"
+        group: "{{ rh1_lab30_ctf_participants_ar_group }}"
+        mode: 0700
+      delegate_to: "{{ _hostname_ }}"
+
+    - name: Create public key
+      ansible.builtin.copy:
+        content: "{{ rh1_lab30_ctf_participants_ar_ssh_public_key }}"
+        dest: /home/{{ rh1_lab30_ctf_participants_ar_username }}/.ssh/rh1_lab30_ctf_participants_ar_ssh_public_key.pub
+        owner: "{{ rh1_lab30_ctf_participants_ar_username }}"
+        group: "{{ rh1_lab30_ctf_participants_ar_group }}"
+        mode: 0600
+      delegate_to: "{{ _hostname_ }}"
+
+    - name: Copy public key in .ssh/authorized_keys
+      ansible.builtin.lineinfile:
+        path: /home/{{ rh1_lab30_ctf_participants_ar_username }}/.ssh/authorized_keys
+        line: "{{ rh1_lab30_ctf_participants_ar_ssh_public_key }}"
+        create: true
+        state: present
+        owner: "{{ rh1_lab30_ctf_participants_ar_username }}"
+        group: "{{ rh1_lab30_ctf_participants_ar_group }}"
+        mode: 0600
+      delegate_to: "{{ _hostname_ }}"
+
+    - name: Create private key
+      ansible.builtin.copy:
+        content: "{{ rh1_lab30_ctf_participants_ar_ssh_private_key }}"
+        dest: /home/{{ rh1_lab30_ctf_participants_ar_username }}/.ssh/rh1_lab30_ctf_participants_ar_ssh_private_key
+        owner: "{{ rh1_lab30_ctf_participants_ar_username }}"
+        group: "{{ rh1_lab30_ctf_participants_ar_group }}"
+        mode: 0600
+
+    - name: Change IdentityFile being used in ssh config
+      ansible.builtin.lineinfile:
+        path: /home/{{ rh1_lab30_ctf_participants_ar_username }}/.ssh/config
+        regexp: '^(.*IdentityFile.*)$'
+        line: "IdentityFile /home/{{ rh1_lab30_ctf_participants_ar_username }}/.ssh/rh1_lab30_ctf_participants_ar_ssh_private_key"
+
+    # - name: Set authorized key from file
+    #   authorized_key:
+    #     user: "{{ rh1_lab30_ctf_participants_ar_username }}"
+    #     state: present
+    #     key: "{{ rh1_lab30_ctf_participants_ar_ssh_public_key }}"
+    #   delegate_to: "{{ _hostname_ }}"

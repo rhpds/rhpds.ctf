@@ -1,0 +1,7 @@
+- name: Create private key
+  ansible.builtin.copy:
+    content: "{{ rh1_lab30_ctf_participants_ar_ssh_private_key }}"
+    dest: /home/{{ rh1_lab30_ctf_participants_ar_username }}/.ssh/rh1_lab30_ctf_participants_ar_ssh_private_key
+    owner: "{{ rh1_lab30_ctf_participants_ar_username }}"
+    group: "{{ rh1_lab30_ctf_participants_ar_group }}"
+    mode: 0600

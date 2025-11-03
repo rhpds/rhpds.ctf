@@ -1,0 +1,11 @@
+---
+galaxy_info:
+  role_name: rh1-lab30-ctf-ocp-ar
+  author: Morgan Peterman (mpeterma@redhat.com)
+  description: RH1 Lab30 Capture the Flag Per table lab OCP config
+  license: GPLv3
+  min_ansible_version: "2.9"
+  platforms: []
+  galaxy_tags:
+  - workshop
+dependencies: []

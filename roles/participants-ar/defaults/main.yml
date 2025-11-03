@@ -1,0 +1,72 @@
+# -------------------------------------------------
+# Default Variables
+# -------------------------------------------------
+
+# Lab user
+rh1_lab30_ctf_participants_ar_username: lab-user
+rh1_lab30_ctf_participants_ar_group: lab-user
+# Set this variable to set password for the user
+#rh1_lab30_ctf_participants_ar_user_password: CHANGEME
+
+# there are two options participant/server
+rh1_lab30_ctf_participants_ar_task_type: participant
+
+# List of hosts to delegate
+rh1_lab30_ctf_participants_ar_participant_hosts:
+  - server1
+  - server2
+  
+# SSh private key content
+rh1_lab30_ctf_participants_ar_ssh_private_key: |
+  -----BEGIN OPENSSH PRIVATE KEY-----
+  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
+  -----END OPENSSH PRIVATE KEY-----
+
+# SSh public key content
+rh1_lab30_ctf_participants_ar_ssh_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCMxt3qdk7MHl7vjZ1MSItc9+DCxlv+VC/Ge6vOEVgY+72XKSep6ujBgU645WaZ8YLB7so1cgqhX4BsQ6nzsMo2o4gUJcGAwIrVLVTKp3nxsUp/NgQ7QhF844Wq6RosgKfjNydUzeqjmreDKzogfFG6pu0/0MzCYrfoEGFJrUrIqMY/VcZnmakRX4YVNjM0JlZov5R9+MrTFX4vbZB9F1WCD9IFz2ltqvKhEvYtxDvSkZgvYyXs1l74xXPUW53fUYRPNlgcMKoQXl4tnkiaMnGxgegThPODFl8V1EIS7sbsWGfP3ihjZWtzBDjcwoijHHdEINVh2OWCcS8eB54Xh4JigLR+VsVDOIgnmCgdlOtn8326MMOIg5r1vkuCOi1KHRKyk+LC+d9ci16rx0p9HXgEwJO3bVzbq8UnypQwPjJUvdR0CaLZ0kJiDxOhHaLUfTiSa5smRh9oORhew514BbgcMdsWEXSIka9dhhGXj8mYEPAbA07cAaX429TJHcOLejE= lab-user@bastion.dhz88.internal
+
+# defaults file for add_infra_accounts
+
+group_name: "ctf-infra"
+
+service_accounts:
+  - name: "ctf-sa"
+  - name: "log-sa"
+
+ssh_pub_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBRfvgXgpb56maTBsgJdAkZw5A9fBFbSBvlTPQivmn7k mknittel@fedesktop.mklab.net"
+

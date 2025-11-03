@@ -1,0 +1,10 @@
+---
+# defaults file for add_infra_accounts
+
+group_name: "ctf-infra"
+
+service_accounts:
+  - name: "ctf-sa"
+  - name: "log-sa"
+
+ssh_pub_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBRfvgXgpb56maTBsgJdAkZw5A9fBFbSBvlTPQivmn7k mknittel@fedesktop.mklab.net"
