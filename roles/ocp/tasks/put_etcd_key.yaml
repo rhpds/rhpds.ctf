@@ -1,7 +1,0 @@
----
-- name: Put etcd secret
-  ansible.builtin.shell: oc exec -it $(oc get pods -l k8s-app=etcd -n openshift-etcd --no-headers | awk '{ print $1 }') -c etcd -n openshift-etcd -- etcdctl put /openshift.io/secrets/quidditch "Yell, 'I FOUND THE SNITCH'"
-  register: result
-  retries: 10
-  delay: 60
-  until: result is successful
